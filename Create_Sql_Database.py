@@ -7,7 +7,6 @@ BASE_DIR = Path(__file__).resolve().parent
 CSV_FILE = BASE_DIR / "defects_data.csv"
 DATABASE_FILE = BASE_DIR / "quality.db"
 
-
 def create_database() -> None:
     """读取 CSV，清洗数据，并导入 SQLite 数据库。"""
 

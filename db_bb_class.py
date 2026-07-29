@@ -1,4 +1,4 @@
-import sqlite3 as sql
+#import sqlite3 as sql
 
 #1）链接数据库
 # conn=sql.connect("defects.db")

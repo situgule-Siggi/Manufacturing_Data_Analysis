@@ -16,24 +16,10 @@ with sql.connect("quality.db") as conn:
                 MAX(repair_cost) AS max_cost
             FROM defects
             GROUP BY defect_type
-
-            UNION ALL
-
-            SELECT 
-                '总计' AS defect_type,
-                COUNT(*),
-                ROUND(AVG(repair_cost), 2),
-                ROUND(SUM(repair_cost), 2),
-                MAX(repair_cost)
-            FROM defects
-        ) AS combined
-        ORDER BY 
-            CASE WHEN defect_type = '总计' THEN 1 ELSE 0 END,
-            total_cost DESC
+        )
     """)
     all_products = cursor.fetchall()
-    id_list=[]
-    count_list=[]
+
     for product in all_products:
         print(product)
     # cursor.execute("select avg(repair_cost) from defects  ")
