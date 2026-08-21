@@ -3,7 +3,7 @@ import sqlite3 as sql
 
 #defect_id,product_id,defect_type,defect_date,defect_location,severity,inspection_method,repair_cost
 
-with sql.connect("quality.db") as conn:
+with sql.connect("../database/quality.db") as conn:
     cursor = conn.cursor()
     #cursor.execute("select * from defects order by defect_date desc limit 10")
     cursor.execute("""
