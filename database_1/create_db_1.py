@@ -2,12 +2,13 @@ from pathlib import Path
 import sqlite3
 import pandas as pd
 
+BASE_DIR = Path(__file__).resolve().parent          # database_1/ 文件夹
+PROJECT_ROOT = BASE_DIR.parent                        # 上一级，Project_Digital/
 
-BASE_DIR = Path(__file__).resolve().parent
-CSV_FILE = BASE_DIR / "defects_data.csv"
-DATABASE_FILE = BASE_DIR / "quality.db"
+CSV_FILE = PROJECT_ROOT / "data" / "raw" / "defects_data.csv"
+DATABASE_FILE = BASE_DIR / "quality.db"                # db 文件还在 database_1/ 里，不用改
 
-def create_database() -> None:
+def create_database() :
     """读取 CSV，清洗数据，并导入 SQLite 数据库。"""
 
     if not CSV_FILE.exists():

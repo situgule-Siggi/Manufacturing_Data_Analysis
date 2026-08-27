@@ -1,0 +1,52 @@
+=== 数据库里的表 ===
+          table_name
+0            products
+1        defect_types
+2     sqlite_sequence
+3           locations
+4  inspection_methods
+5        main_defects
+
+=== products ===
+    product_id
+0            1
+1            2
+2            3
+..         ...
+98          99
+99         100
+
+=== defect_types ===
+   defect_type_id defect_type_name
+0               1       Structural
+1               2       Functional
+2               3         Cosmetic
+
+=== locations ===
+   location_id location_name
+0            1     Component
+1            2      Internal
+2            3       Surface
+
+=== inspection_methods ===
+   method_id        method_name
+0          1  Visual Inspection
+1          2  Automated Testing
+2          3     Manual Testing
+
+=== main_defects ===
+Index(['defect_id', 'product_id', 'defect_type_id', 'defect_date',
+       'location_id', 'severity', 'method_id', 'repair_cost'],
+      dtype='str')
+SQL：
+=====各语句优先级=====
+1. FROM        先确定从哪张表取数据
+2. WHERE       对原始的每一行数据做筛选（分组之前）
+3. GROUP BY    把筛选后剩下的数据分组
+4. HAVING      对分组之后的结果（聚合值）再做筛选
+5. SELECT      挑选要显示的列
+6. ORDER BY    最后排序
+
+
+
+

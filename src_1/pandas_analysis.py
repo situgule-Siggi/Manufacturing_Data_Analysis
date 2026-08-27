@@ -8,7 +8,8 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
 BASE_DIR = Path(__file__).resolve().parent
-DATABASE_FILE = BASE_DIR / "quality.db"
+Project_DIR = BASE_DIR.parent
+DATABASE_FILE = Project_DIR / 'database_1' / "quality.db"
 
 
 def load_defects() -> pd.DataFrame:
@@ -112,7 +113,7 @@ def main():
     # )
     # print(count_risk)
     # print(monthly_cose)
-    print(df['product_id'].nunique())
+    # print(df['product_id'].nunique())
     df['cost_category']=pd.cut(
         df['repair_cost'],
         bins=[0,100,300,float("inf")],
@@ -120,24 +121,24 @@ def main():
     )
     # print(df)
 
-    def create_quality_summary(df):
-        summary = (
-            df.groupby("defect_type", as_index=False)
-              .agg(
-                  defect_count=("defect_id", "count"),
-                  affected_products=("product_id", "nunique"),
-                  average_cost=("repair_cost", "mean"),
-                  total_cost=("repair_cost", "sum"),
-                  maximum_cost=("repair_cost", "max")
-              )
-              .sort_values("total_cost", ascending=False)
-        )
-
-        summary["average_cost"] = summary["average_cost"].round(2)
-        summary["total_cost"] = summary["total_cost"].round(2)
-        summary["maximum_cost"] = summary["maximum_cost"].round(2)
-
-        return summary
+    # def create_quality_summary(df):
+    #     summary = (
+    #         df.groupby("defect_type", as_index=False)
+    #           .agg(
+    #               defect_count=("defect_id", "count"),
+    #               affected_products=("product_id", "nunique"),
+    #               average_cost=("repair_cost", "mean"),
+    #               total_cost=("repair_cost", "sum"),
+    #               maximum_cost=("repair_cost", "max")
+    #           )
+    #           .sort_values("total_cost", ascending=False)
+    #     )
+    #
+    #     summary["average_cost"] = summary["average_cost"].round(2)
+    #     summary["total_cost"] = summary["total_cost"].round(2)
+    #     summary["maximum_cost"] = summary["maximum_cost"].round(2)
+    #
+    #     return summary
 
     # summary = create_quality_summary(df)
     # output_file = BASE_DIR / "quality_report.xlsx"
@@ -161,23 +162,24 @@ def main():
     #     )
 
 
-    plt.figure(figsize=(10, 5))
-
-    plt.plot(
-        monthly_cost["defect_month"],
-        monthly_cost["total_cost_defect"],
-        marker="o"
-    )
-
-    plt.title("Monthly Repair Cost")
-    plt.xlabel("Month")
-    plt.ylabel("Repair Cost")
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    plt.show()
+    # plt.figure(figsize=(10, 5))
+    #
+    # plt.plot(
+    #     monthly_cost["defect_month"],
+    #     monthly_cost["total_cost_defect"],
+    #     marker="o"
+    # )
+    #
+    # plt.title("Monthly Repair Cost")
+    # plt.xlabel("Month")
+    # plt.ylabel("Repair Cost")
+    # plt.xticks(rotation=45)
+    # plt.tight_layout()
+    # plt.show()
 
 # defect_id,product_id,defect_type,defect_date,
 # defect_location,severity,inspection_method,repair_cost
+
 
 if __name__ == "__main__":
     main()
